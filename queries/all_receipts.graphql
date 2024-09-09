@@ -1,0 +1,12 @@
+query ReceiptSender($key: String!) {
+  receiptSender(key: $sender) {
+    key
+    name
+    logo {
+      publicUrl
+    }
+    isRejected
+    userIdentifiers
+    numberOfReceipts
+  }
+}

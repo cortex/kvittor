@@ -1,0 +1,38 @@
+query ReceiptsBySender($limit: Int, $offset: Int, $senderKey: String!) {
+  receiptsV2(limit: $limit, offset: $offset, senderKey: $senderKey) {
+    __typename
+    total
+    offset
+    limit
+    list {
+      ...baseDetailsFields
+    }
+  }
+}
+
+fragment baseDetailsFields on ReceiptBaseDetails {
+  key
+  purchaseDate
+  totalAmount {
+    formatted
+    amount
+    currency
+  }
+  attributes {
+    isCopy
+    isExpensed
+    isRefund
+    isTrashed
+  }
+  store {
+    name
+    logo {
+      publicUrl
+    }
+  }
+  tags {
+    key
+    name
+    icon
+  }
+}
