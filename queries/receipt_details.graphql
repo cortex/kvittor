@@ -1,0 +1,199 @@
+query ReceiptDetails($key: String!) {
+  receiptV2(key: $key) {
+    key
+    content {
+      header {
+        totalPurchaseAmount
+        subAmounts
+        isoDate
+        formattedDate
+        # text
+        labels {
+          type
+          text
+        }
+        logo {
+          publicUrl
+        }
+      }
+      footer {
+        text
+      }
+      items {
+        allItems {
+          #    text
+          items {
+            __typename
+            # text
+            type
+            ... on ProductListItem {
+              ...productFields
+            }
+            ... on GeneralDepositListItem {
+              money {
+                formatted
+              }
+              isRefund
+              description
+              text
+            }
+            ... on GeneralDiscountListItem {
+              money {
+                formatted
+              }
+              isRefund
+              text
+            }
+          }
+        }
+        noBonusItems {
+          text
+          items {
+            type
+            ... on ProductListItem {
+              ...productFields
+            }
+          }
+        }
+        returnedItems {
+          text
+          items {
+            type
+            ... on ProductReturnListItem {
+              name
+              money {
+                formatted
+              }
+              quantityCost {
+                formatted
+              }
+              deposits {
+                description
+                money {
+                  formatted
+                }
+                isRefund
+              }
+              costModifiers {
+                description
+                money {
+                  formatted
+                }
+                isRefund
+              }
+              connectedReceipt {
+                receiptKey
+                description
+                isParentReceipt
+              }
+              identifiers
+              text
+            }
+          }
+        }
+      }
+      storeInformation {
+        text
+        storeInformation {
+          property
+          value
+          subRows {
+            property
+            value
+          }
+        }
+      }
+      paymentInformation {
+        text
+        totals {
+          text
+          totals {
+            property
+            value
+            subRows {
+              property
+              value
+            }
+          }
+        }
+        paymentMethods {
+          text
+          methods {
+            type
+            information {
+              property
+              value
+              subRows {
+                property
+                value
+              }
+            }
+          }
+        }
+        customer {
+          text
+          customer {
+            property
+            value
+            subRows {
+              property
+              value
+            }
+          }
+        }
+        cashRegister {
+          text
+          cashRegister {
+            property
+            value
+            subRows {
+              property
+              value
+            }
+          }
+        }
+      }
+    }
+    campaigns {
+      image {
+        publicUrl
+      }
+      title
+      key
+      height
+      width
+      destinationUrl
+    }
+    sender {
+      name
+      key
+    }
+  }
+}
+
+fragment productFields on ProductListItem {
+  name
+  money {
+    formatted
+    amount
+  }
+  quantityCost {
+    formatted
+  }
+  deposits {
+    description
+    money {
+      formatted
+    }
+    isRefund
+  }
+  costModifiers {
+    description
+    money {
+      formatted
+    }
+    isRefund
+  }
+  identifiers
+  text
+}
