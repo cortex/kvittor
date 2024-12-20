@@ -5,14 +5,14 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4.9.0"
-anyhow = "1.0.87"
-charming = "0.3.1"
-chrono = "0.4.38"
-clap = "4.5.17"
+anyhow = "1.0.94"
+charming = { version = "0.4.0", features = [] }
+chrono = "0.4.39"
+clap = "4.5.23"
 env_logger = "0.11.5"
-graphql_client = { version = "0.14.0", features = ["reqwest-blocking"] }
+graphql_client = { version = "0.14", features = ["reqwest-blocking"] }
 itertools = "0.13.0"
 log = "0.4.22"
-reqwest = "0.11.27"
-serde = "1.0.210"
-serde_json = "1.0.128"
+reqwest = { version = "0.11.27", features = ["json", "blocking"]}
+serde = "1.0.216"
+serde_json = "1.0.133"
